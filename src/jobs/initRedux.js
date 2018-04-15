@@ -1,6 +1,6 @@
 var log=require('../tools/printLog.js');
 
-function initRedux(config){
+function initRedux(name,config){
   /************************************
     Will init below file/folders in folder <component name>:
 
