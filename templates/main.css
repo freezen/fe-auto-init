@@ -1,0 +1,440 @@
+/************************************************************************
+ Licensed Materials - Property of IBM
+ IBM IoT for Manufacturing
+ © Copyright IBM Corp. 2017, 2018 All Rights Reserved.
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *************************************************************************/
+
+* {
+  border: 0;
+  font-family: "Helvetica Neue for IBM", "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box !important;
+}
+
+span.icon {
+  font-family: 'icomoon' !important;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #f3f3f3;
+}
+
+ul, ol {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+ul.ui-primitives-react_optionsBox {
+  box-shadow: 0 3px 12px hsla(0, 0%, 47%, .4);
+  box-sizing: border-box;
+}
+
+#root li {
+  list-style: none;
+  cursor: pointer;
+  display: block;
+}
+
+label {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+button{
+  border-radius: 0;
+}
+
+textarea {
+  resize: none;
+}
+
+textarea:focus {
+  border: 0;
+  box-shadow: none;
+  outline: 0;
+}
+
+input:focus {
+  border: 0;
+  box-shadow: none;
+  outline: 0;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.dropdown-toggle .caret {
+  right: 10px;
+  position: absolute;
+  top: 15px;
+}
+
+.dropdown-menu {
+  width: 100%;
+  border-radius: 0;
+}
+
+.css-relative {
+  position: relative;
+}
+
+.css-right {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  height: 100%;
+  line-height: 100%;
+}
+
+.css-page {
+  width: 100vw;
+  height: 100vh;
+}
+
+.css-loading {
+  text-align: center;
+  height: 100%;
+  display: inline-block;
+  width: 100%;
+  line-height: 200px;
+}
+
+.sr-only {
+  white-space: nowrap;
+}
+
+.css-loading .glyphicon {
+  font-size: 30px;
+  color: #ccc;
+  margin-left: 0 !important;
+  margin-top: 40px;
+  position: initial !important;
+}
+
+.css-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.css-line {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.css-title {
+  font-size: 20px;
+  font-weight: 200;
+  margin-bottom: 15px;
+}
+
+.css-panel {
+  border-bottom: 1px solid #f5f5f2;
+  padding-bottom: 25px;
+  margin-bottom: 15px;
+}
+
+.css-bar {
+  position: absolute;
+  z-index: 100;
+}
+
+.btn:focus, .btn:active {
+  outline: 0px auto -webkit-focus-ring-color;
+}
+.badge{
+  background: #fc5d4f;
+  border-radius: 50%;
+  height: 24px;
+  width: 24px;
+  vertical-align: middle;
+  line-height: 24px;
+  top: 10px;
+  left: 40px;
+  position: absolute;
+}
+.css-btn{
+  min-width: 80px;
+  text-align: center;
+  height: 40px;
+  font-family: 'HelveticaNeue-Medium';
+  font-size: 14px;
+  border-radius: 0px;
+  line-height: 40px;
+  padding: 0 10px;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border-radius: 0;
+  border: 0px;
+  background: #17616B;
+  color:white;
+}
+.css-btn .glyphicon {
+  font-size: 16px;
+  margin-right: 10px;
+  vertical-align: text-bottom;
+}
+
+.css-btn-primary,#myWizard .ui-primitives-react_Button[data-design=primary] {
+  border: 0px;
+  background: #17616B;
+  color:white;
+}
+.css-btn.css-btn-primary:disabled,#myWizard.ui-primitives-react_Button[data-design=primary]:disabled {
+  background: #E3E3E3;
+  color: #777677;
+  cursor: auto;
+}
+.css-btn-primary:hover ,#myWizard .ui-primitives-react_Button[data-design=primary]:hover{
+  background: #188291;
+}
+.css-btn-secondary {
+  background: #FFFFFF;
+  border: 1px solid #17616B;
+  color: #17616B;
+}
+.css-btn.css-btn-secondary:disabled {
+  background: #FFFFFF;
+  border: 1px solid #E3E3E3;
+  color: #777677;
+  cursor: auto;
+}
+.css-btn-secondary:hover {
+  background: #EFF9F9;
+  border: 1px solid #17616B;
+  color: #17616B;
+}
+
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 32px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+#root .ui-primitives-react_Button[data-design=filled] {
+  background-color: #25818b;
+}
+
+#root .ui-primitives-react_Button[data-design=bordered] {
+  border-color: #25818b;
+}
+
+.glyphicon {
+  cursor: pointer;
+}
+
+.glyphicon:focus {
+  outline: 0;
+}
+#modelListContent .Table__tableRowFaded___1ylW1.Table__tableRow___HbMST,#modelImageGroupDOM .Table__tableRow___HbMST,#validationStep .Table__tableRow___HbMST{
+  cursor: pointer;
+}
+#modelListContent .Table__tableRowDetail___idP6o .Table__tableRowFaded___1ylW1.Table__tableRow___HbMST,#modelImageGroupDOM .Table__tableRowDetail___idP6o .Table__tableRow___HbMST,#validationStep .Table__tableRowDetail___idP6o .Table__tableRow___HbMST{
+  cursor: auto;
+}
+
+{
+
+}
+
+.css-word-break {
+  word-break: break-word;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.css-search {
+  width: 300px;
+  font-style: italic;
+}
+
+.css-menu {
+  display: none;
+  position: absolute;
+  top: 200px;
+  left: 270px;
+  text-align: left;
+  font-size: 14px;
+  color: #485151;
+}
+
+.css-menu-bar {
+  background-color: white;
+  border: 1px solid #E3E3E3;
+  box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+  padding: 15px;
+  z-index: 999;
+  font-size: 14px;
+}
+
+.css-menu-triangle {
+  font-size: 25px;
+  color: white;
+  z-index: 101;
+  position: absolute;
+  top: -10%;
+  left: 106px;
+}
+
+.right-triangle {
+  position: absolute;
+  text-shadow: 0px -2px 6px rgba(0, 0, 0, 0.25);
+  color: white;
+  font-size: 22px;
+  left: auto;
+  top: -15px;
+  right: 59px;
+}
+
+.right-triangle-patch {
+  width: 30px;
+  height: 10px;
+  position: absolute;
+  top: 1px;
+  right: 56px;
+  left: auto;
+  background: white;
+}
+
+
+/*Give 15px space on the left from the scroll bar as seen in designs and in the 'updated' png.Scroll bar ends should be roundedPlease change colour to these:Scroll teal colour:grey: */
+
+.css-scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.css-scroll::-webkit-scrollbar-track {
+  background: #E3E3E3;
+  border-radius: 2.5px;
+}
+
+.css-scroll::-webkit-scrollbar-thumb {
+  border-radius: 2.5px;
+  background: #164D56;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 2.5px;
+  background: #E3E3E3;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 2.5px;
+  background: #164D56;
+}
+
+.icon-menu-overflow_64 {
+  font-size: 24px;
+}
+
+
+/* analysing loading CSS animation */
+
+.icon-spinner9 {
+  -moz-animation: rotate 1s linear infinite;
+  -webkit-animation: rotate 1s linear infinite;
+  -o-animation: rotate 1s linear infinite;
+  -ms-animation: rotate 1s linear infinite;
+  animation: rotate 1s linear infinite;
+  display: block;
+}
+
+#myWizard .BaseDialog__container___14Pn1 {
+  width: 700px !important;
+}
+
+
+/*#root .Table__tableRowDetailOpen___2vh5C .ui-primitives-react_switch-toggle-round+label:after,#root .Table__tableRowDetailOpen___2vh5C .ui-primitives-react_switch.ui-primitives-react_checked:not(.ui-primitives-react_disabled)>label:after {
+    background-color: #164D56;
+		color: #164D56;
+}*/
+
+#myWizard .BaseDialogFooter__container___3TTRy {
+  max-height: 30px;
+  height: 30px;
+  min-height: 43px;
+}
+
+#root .Table__tableRowDetailOpen___2vh5C .ui-primitives-react_switch-toggle-round+label:before, #root .Table__tableRowDetailOpen___2vh5C .ui-primitives-react_switch.ui-primitives-react_checked:not(.ui-primitives-react_disabled)>label:before {
+  background-color: #333333;
+}
+
+#root .WizardDialog__wizardDialog___2GFGC div[class*=leftLayoutBodyContent] {
+  max-height: calc(100vh - 350px);
+}
+#root .FilterTag__container___126HE>button{
+  width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  margin-left: 5px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spin
+/* Firefox */
+
+{
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin
+/* Safari and Chrome */
+
+{
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}

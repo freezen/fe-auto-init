@@ -4,10 +4,15 @@ const config={
       files:[
         'package.json',
         'webpack.config.js',
-        'index.html'
+        'index.html',
+        'css/main.css',
+        'src/main.js',
+        'src/reducers/index.js',
       ],
       folders:[
         'src',
+        'src/components',
+        'src/reducers',
         'images',
         'css',
         'fonts',
