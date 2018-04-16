@@ -1,5 +1,8 @@
 /************************************************************************
-
+ Licensed Materials - Property of IBM
+ IBM IoT for Manufacturing
+ © Copyright IBM Corp. 2017, 2018 All Rights Reserved.
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
  *************************************************************************/
 import Immutable from 'immutable';
 
@@ -9,8 +12,8 @@ const initialState =Immutable.fromJS({
 })
 
 
-const <componant name> = (state = initialState, action) => {
-  if(action.type.split('/')[0].indexOf('<component name>')==-1){
+const header = (state = initialState, action) => {
+  if(action.type.split('/')[0].indexOf('header')==-1){
     return state
   }
   switch (action.type.split('/')[1]) {
@@ -21,4 +24,4 @@ const <componant name> = (state = initialState, action) => {
   }
 }
 
-export default <component name>
+export default header
