@@ -8,7 +8,6 @@ function initReact(name,config){
   /************************************
     Will init below file/folders in folder <component name>:
 
-    <component name>_Home.js
     <component name>.js
     <component name>.css (use CSS Modules)
     /child
@@ -17,23 +16,25 @@ function initReact(name,config){
 
   let userPath=process.cwd()
   name=name.charAt(0).toUpperCase()+name.substring(1)
+
   //init folder
   createFolder(userPath+'/'+name)
+  createFolder(userPath+'/'+name+'/child')
+
   //init files
-  createFile(userPath+'/'+name+`/Template_home.js`)
-  createFile(userPath+'/'+name+`/Template_reducers.js`)
-  createFile(userPath+'/'+name+`/Template_actions.js`)
-  createFile(userPath+'/'+name+`/Template_component.js`)
+  createFile(userPath+'/'+name+`/Template_component_react.js`)
+  createFile(userPath+'/'+name+`/Template_component.modules.css`)
+
   //edit files
-  replaceContent(userPath+'/'+name+`/Template_home.js`,`<component name>`,name)
-  replaceContent(userPath+'/'+name+`/Template_reducers.js`,`<component name>`,name)
-  replaceContent(userPath+'/'+name+`/Template_actions.js`,`<component name>`,name)
-  replaceContent(userPath+'/'+name+`/Template_component.js`,`<component name>`,name)
-  //rename
-  // rename(userPath+'/'+name+`/Template_home.js`,`<component name>`,name)
-  // rename(userPath+'/'+name+`/Template_home.js`,`<component name>`,name)
-  // rename(userPath+'/'+name+`/Template_home.js`,`<component name>`,name)
-  // rename(userPath+'/'+name+`/Template_home.js`,`<component name>`,name)
+  replaceContent(userPath+'/'+name+`/Template_component_react.js`,`<component name>`,name,()=>{
+    //rename
+    rename(userPath+'/'+name+`/Template_component_react.js`,name+".js")
+  })
+  replaceContent(userPath+'/'+name+`/Template_component.modules.css`,`<component name>`,name,()=>{
+    //rename
+    rename(userPath+'/'+name+`/Template_component.modules.css`,name+".modules.css")
+  })
+
 
 }
 module.exports = initReact;

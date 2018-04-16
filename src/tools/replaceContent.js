@@ -3,7 +3,7 @@ var path = require("path");
 
 var log=require('./printLog.js');
 
-function replaceContent(pathName,target,value){
+function replaceContent(pathName,target,value,callback){
   var names=pathName.split('/')
   let fileName=names[names.length-1]
   var sourceFile = path.join(path.resolve(__dirname, '../..')+'/templates/', fileName);
@@ -19,7 +19,9 @@ function replaceContent(pathName,target,value){
       if(err) {
         log(err);
       } else {
-        log('Finish!');
+        if(callback!=undefined){
+          callback()
+        }
       }
     });
   });

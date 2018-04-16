@@ -1,0 +1,10 @@
+/************************************************************************
+
+ *************************************************************************/
+.<component name> {
+  z-index: 666;
+}
+.wizardDialog :global(div[class*='leftLayoutBodyContent']) {
+ max-height: calc(100vh - 400px);
+ display: flex;
+}

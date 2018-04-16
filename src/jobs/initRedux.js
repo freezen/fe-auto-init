@@ -1,5 +1,17 @@
 var log=require('../tools/printLog.js');
+var createFolder=require('../tools/createFolder.js');
+var createFile=require('../tools/createFile.js');
+var replaceContent=require('../tools/replaceContent.js');
+var rename=require('../tools/rename.js');
 
+let userPath=process.cwd()
+
+function update(name,targetTemplate,finalFileName){
+  replaceContent(userPath+'/'+name+targetTemplate,`<component name>`,name,()=>{
+    //rename
+    rename(userPath+'/'+name+targetTemplate,finalFileName)
+  })
+}
 function initRedux(name,config){
   /************************************
     Will init below file/folders in folder <component name>:
@@ -14,6 +26,27 @@ function initRedux(name,config){
       index.js
 
   **************************************/
-  log(`initRedux ... ${name}`)
+
+  name=name.charAt(0).toUpperCase()+name.substring(1)
+  //init folder
+  createFolder(userPath+'/'+name)
+  createFolder(userPath+'/'+name+'/child')
+  createFolder(userPath+'/'+name+'/actions')
+  createFolder(userPath+'/'+name+'/reducers')
+
+  //init files
+  createFile(userPath+'/'+name+`/Template_Home.js`)
+  createFile(userPath+'/'+name+`/Template_component.modules.css`)
+  createFile(userPath+'/'+name+`/reducers/Template_reducers.js`)
+  createFile(userPath+'/'+name+`/actions/Template_actions.js`)
+  createFile(userPath+'/'+name+`/Template_component_redux.js`)
+
+  //edit files
+  update(name,`/Template_Home.js`,name+"_Home.js")
+  update(name,`/Template_component.modules.css`,name+".modules.css")
+  update(name,`/reducers/Template_reducers.js`,"index.js")
+  update(name,`/actions/Template_actions.js`,"index.js")
+  update(name,`/Template_component_redux.js`,name+".js")
+
 }
 module.exports = initRedux;

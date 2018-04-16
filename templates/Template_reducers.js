@@ -9,7 +9,7 @@ const initialState =Immutable.fromJS({
 })
 
 
-const <componant name> = (state = initialState, action) => {
+const <component name> = (state = initialState, action) => {
   if(action.type.split('/')[0].indexOf('<component name>')==-1){
     return state
   }
