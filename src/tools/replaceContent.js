@@ -6,11 +6,8 @@ var log=require('./printLog.js');
 function replaceContent(pathName,target,value,callback){
   var names=pathName.split('/')
   let fileName=names[names.length-1]
-  var sourceFile = path.join(path.resolve(__dirname, '../..')+'/templates/', fileName);
 
-
-
-  fs.readFile(sourceFile, {flag: 'r+', encoding: 'utf8'}, function (err, data) {
+  fs.readFile(pathName, {flag: 'r+', encoding: 'utf8'}, function (err, data) {
     if(err) {
       log(err);
       return;
