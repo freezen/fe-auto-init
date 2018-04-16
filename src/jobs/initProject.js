@@ -34,7 +34,5 @@ function initProject(config){
       createFile(userPath+'/'+item)
     }
   })
-
-
 }
 module.exports = initProject;

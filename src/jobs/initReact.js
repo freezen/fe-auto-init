@@ -34,7 +34,5 @@ function initReact(name,config){
     //rename
     rename(userPath+'/'+name+`/Template_component.modules.css`,name+".modules.css")
   })
-
-
 }
 module.exports = initReact;

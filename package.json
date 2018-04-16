@@ -1,0 +1,15 @@
+{
+  "name": "react-auto-init",
+  "version": "1.0.0",
+  "description": "Project init & init js/css files for a new react/redux component",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index sample -x"
+  },
+  "keywords": [
+    "react",
+    "init"
+  ],
+  "author": "f_dstandout@126.com",
+  "license": "MIT"
+}
