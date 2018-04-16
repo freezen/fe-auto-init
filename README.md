@@ -1,2 +1,3 @@
 # react-auto-init
-Project init &amp; init js/css files for a new react/redux component
+React/redux project init &amp; generate js/css files to init a new react/redux component
+npm link : https://www.npmjs.com/package/react-auto-init
