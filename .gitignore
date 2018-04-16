@@ -1,0 +1,9 @@
+# dependencies
+/node_modules
+
+.DS_Store
+
+# auto-generate
+package-lock.json
+
+npm-debug.log*

@@ -7,7 +7,7 @@ var rename=require('../tools/rename.js');
 let userPath=process.cwd()
 
 function update(name,targetTemplate,finalFileName){
-  replaceContent(userPath+'/'+name+targetTemplate,`<component name>`,name,()=>{
+  replaceContent(userPath+'/'+name+targetTemplate,`<component name>`,name.charAt(0).toUpperCase()+name.substring(1),()=>{
     //rename
     rename(userPath+'/'+name+targetTemplate,finalFileName)
   })
@@ -27,7 +27,7 @@ function initRedux(name,config){
 
   **************************************/
 
-  name=name.charAt(0).toUpperCase()+name.substring(1)
+  let componentName=name.charAt(0).toUpperCase()+name.substring(1)
   //init folder
   createFolder(userPath+'/'+name)
   createFolder(userPath+'/'+name+'/child')
@@ -42,11 +42,11 @@ function initRedux(name,config){
   createFile(userPath+'/'+name+`/Template_component_redux.js`)
 
   //edit files
-  update(name,`/Template_Home.js`,name+"_Home.js")
-  update(name,`/Template_component.modules.css`,name+".modules.css")
+  update(name,`/Template_Home.js`,componentName+"_Home.js")
+  update(name,`/Template_component.modules.css`,componentName+".modules.css")
   update(name,`/reducers/Template_reducers.js`,"index.js")
   update(name,`/actions/Template_actions.js`,"index.js")
-  update(name,`/Template_component_redux.js`,name+".js")
+  update(name,`/Template_component_redux.js`,componentName+".js")
 
 }
 module.exports = initRedux;

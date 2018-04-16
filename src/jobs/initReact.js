@@ -15,7 +15,7 @@ function initReact(name,config){
   **************************************/
 
   let userPath=process.cwd()
-  name=name.charAt(0).toUpperCase()+name.substring(1)
+  let componentName=name.charAt(0).toUpperCase()+name.substring(1)
 
   //init folder
   createFolder(userPath+'/'+name)
@@ -26,13 +26,13 @@ function initReact(name,config){
   createFile(userPath+'/'+name+`/Template_component.modules.css`)
 
   //edit files
-  replaceContent(userPath+'/'+name+`/Template_component_react.js`,`<component name>`,name,()=>{
+  replaceContent(userPath+'/'+name+`/Template_component_react.js`,`<component name>`,componentName,()=>{
     //rename
-    rename(userPath+'/'+name+`/Template_component_react.js`,name+".js")
+    rename(userPath+'/'+name+`/Template_component_react.js`,componentName+".js")
   })
-  replaceContent(userPath+'/'+name+`/Template_component.modules.css`,`<component name>`,name,()=>{
+  replaceContent(userPath+'/'+name+`/Template_component.modules.css`,`<component name>`,componentName,()=>{
     //rename
-    rename(userPath+'/'+name+`/Template_component.modules.css`,name+".modules.css")
+    rename(userPath+'/'+name+`/Template_component.modules.css`,componentName+".modules.css")
   })
 }
 module.exports = initReact;
