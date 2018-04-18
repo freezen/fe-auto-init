@@ -29,7 +29,7 @@ export default class <component name>_Home extends Component {
   }
 
   shouldComponentUpdate(){
-
+    return true
   }
 
   componentWillUpdate(){

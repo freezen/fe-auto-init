@@ -1,11 +1,12 @@
 {
   "name": "react-auto-init",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "repository":{
     "type":"git",
     "url":"https://github.com/freezen/react-auto-init.git"
   },
   "description": "Project init & init js/css files for a new react/redux component",
+  "readmeFilename": "README.md",
   "main": "index.js",
   "bin":{
     "react-auto-init":"index.js"

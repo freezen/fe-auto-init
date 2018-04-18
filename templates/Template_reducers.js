@@ -15,7 +15,7 @@ const <component name> = (state = initialState, action) => {
   }
   switch (action.type.split('/')[1]) {
     case 'expandData':
-      return return state.set('expandData',!state.get('expandData'))
+      return state.set('expandData',!state.get('expandData'))
     default:
       return state
   }

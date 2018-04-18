@@ -34,7 +34,7 @@ export default class <component name> extends Component {
   }
 
   shouldComponentUpdate(){
-
+    return true
   }
 
   componentWillUpdate(){
