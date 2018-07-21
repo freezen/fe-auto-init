@@ -3,7 +3,7 @@
  *************************************************************************/
 import React, {PropTypes, Component} from 'react';
 import {Router, Route, hashHistory} from 'react-router';
-import css from './<component name>_Home.modules.css'
+import css from './<component name>.modules.css'
 
 export default class <component name>_Home extends Component {
   static propTypes = {
