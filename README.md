@@ -3,7 +3,7 @@ React/redux project init &amp; generate js/css files to init a new react/redux c
 
 Install: npm install react-auto-init -g
 
-For a pure react app, run in the right path: 
+To init a react app, run in the right path: 
 
 `react-auto-init`
 
