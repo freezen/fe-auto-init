@@ -7,8 +7,12 @@ For a pure react app, run in the right path:
 
 `react-auto-init`
 
-For a pure react component, run in the right path: react-auto-init {your component name}
+For a pure react component, run in the right path: 
 
-For a redux component, run: react-auto-init {your component name} -x
+`react-auto-init <your component name>`
+
+For a redux component, run: 
+
+`react-auto-init <your component name> -x`
 
 npm link : https://www.npmjs.com/package/react-auto-init
