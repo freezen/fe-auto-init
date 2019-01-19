@@ -16,8 +16,8 @@ function initRedux(name,config){
   /************************************
     Will init below file/folders in folder <component name>:
 
-    <component name>_Home.js
     <component name>.js
+    <component name>_Container.js
     <component name>.css (use CSS Modules)
     /child
     /actions
@@ -35,18 +35,18 @@ function initRedux(name,config){
   createFolder(userPath+'/'+name+'/reducers')
 
   //init files
-  createFile(userPath+'/'+name+`/Template_Home.js`)
+  createFile(userPath+'/'+name+`/Template_component_redux.js`)
   createFile(userPath+'/'+name+`/Template_component.modules.css`)
   createFile(userPath+'/'+name+`/reducers/Template_reducers.js`)
   createFile(userPath+'/'+name+`/actions/Template_actions.js`)
-  createFile(userPath+'/'+name+`/Template_component_redux.js`)
+  createFile(userPath+'/'+name+`/Template_container_redux.js`)
 
   //edit files
-  update(name,`/Template_Home.js`,componentName+"_Home.js")
+  update(name,`/Template_component_redux.js`,componentName+".js")
   update(name,`/Template_component.modules.css`,componentName+".modules.css")
   update(name,`/reducers/Template_reducers.js`,"index.js")
   update(name,`/actions/Template_actions.js`,"index.js")
-  update(name,`/Template_component_redux.js`,componentName+".js")
+  update(name,`/Template_container_redux.js`,componentName+"_Container.js")
 
 }
 module.exports = initRedux;

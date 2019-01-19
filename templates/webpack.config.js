@@ -1,11 +1,8 @@
 /************************************************************************
-
+ 
  *************************************************************************/
 var path = require("path");
 var webpack = require('webpack');
-
-//plugins
-var I18nPlugin = require("i18n-webpack-plugin");
 
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
@@ -34,45 +31,60 @@ if(env==null||env.indexOf('dev')==-1){
   env='production'
 }
 
-var languages = {
-    "en": require("./i18n/en.json"),
-    "de": require("./i18n/de.json"),
-    "zh": require("./i18n/zh.json"),
-    "fr": require("./i18n/fr.json"),
-    "it": require("./i18n/it.json"),
-    "ja": require("./i18n/ja.json"),
-    "pt-br": require("./i18n/pt-br.json"),
-    "zh-tw": require("./i18n/zh-tw.json"),
-    "es": require("./i18n/es.json"),
-};
-if(env==null||env!='production'){
-  for(var key in languages){
-    if('en'!=key){
-      delete languages[key]
-    }
-  }
-}
+const styleLoaders = [
+  {
+    loader: 'css-loader',
+    options: {
+      importLoaders: 2,
+      sourceMap: true,
+    },
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      plugins: () => [
+        require('autoprefixer')({
+          browsers: ['last 1 version', 'ie >= 11'],
+        }),
+      ],
+      sourceMap: true,
+    },
+  },
+  {
+    loader: 'sass-loader',
+    options: {
+      includePaths: [path.resolve(__dirname, '..', 'node_modules')],
+      data: `
+        $feature-flags: (
+          components-x: false,
+          grid: false,
+          ui-shell: true,
+        );
+      `,
+      sourceMap: true,
+    },
+  },
+];
 
-module.exports = Object.keys(languages).map(function(language) {
+module.exports =(function() {
     assetsPluginInstance = new AssetsPlugin({
-      filename: "dist/"+language+'/webpack-assets.json',
+      filename: 'dist/webpack-assets.json',
     })
     return {
-        name: language,
+        name: 'app',
         entry: {
-          bundle: path.resolve(__dirname, './src0/main.js'),
-          libs: [
-            "react","react-dom","react-addons-update","redux-thunk","redux-immutable",
-            "redux","react-redux","react-addons","immutable",
-            "react-router",
-            //'@watson-iot/ui-primitives-react',"@watson-iot/ui-components-react",
-          ],
-          iotp:["react","react-dom","react-addons-update","react-addons","@watson-iot/ui-components-react",'@watson-iot/ui-primitives-react'],
+          bundle: path.resolve(__dirname, './src/main.js'),
+          // libs: [
+          //   "react","react-dom","react-addons-update","redux-thunk","redux-immutable",
+          //   "redux","react-redux","react-addons","immutable",
+          //   "react-router","carbon-icons","carbon-components","carbon-components-react"
+          // ],
+          //carbon:["react","react-dom","react-addons-update","react-addons"],
         },
         // entry: './src/iot_portal.js',
 
         output: {
-            path: './dist/'+language+'/',
+            path: './dist/',
             // path: './iotDist/',
             filename: (env&&env=='production')?'app_[hash].js':'app.js',
         },
@@ -132,10 +144,16 @@ module.exports = Object.keys(languages).map(function(language) {
             {
               test: /^(?!.*?\.modules).*\.css$/,
               loader: ExtractTextPlugin.extract("style-loader", "css-loader")
-            },{
+            },
+            {
+              test:/\.scss$/,
+              loader:ExtractTextPlugin.extract("style-loader", "css-loader")
+            },
+            {
               test: /\.modules\.css$/,
               loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]')
-            },{
+            },
+            {
                 test: /\.json$/,
                 loader: 'json'
             },{
@@ -147,35 +165,29 @@ module.exports = Object.keys(languages).map(function(language) {
           extensions: ['', '.js', '.jsx'],
           mainFiles:['gogo'],//change "default use" filename setting when resolving path
           root: [
-            path.resolve('./src0/components'),
+            path.resolve('./src/components'),
           ]
         },
         plugins: (env&&env=='production')?[
-            new I18nPlugin(
-                languages[language]
-            ),
-            new webpack.optimize.CommonsChunkPlugin({
-              names: ['iotp','libs'],
-              //names: ['libs'],
-              filename:"[name].js",
-              minChunks: Infinity,
-            }),
+            // new webpack.optimize.CommonsChunkPlugin({
+            //   //names: ['carbon','libs'],
+            //   names: ['libs'],
+            //   filename:"[name].js",
+            //   minChunks: Infinity,
+            // }),
             new ExtractTextPlugin("bundle.css"),
             uglifyJs,
             OccurenceOrderPlugin,
             prod,
             assetsPluginInstance,
         ]:[
-            new I18nPlugin(
-                languages[language]
-            ),
-            new webpack.optimize.CommonsChunkPlugin({
-              names: ['iotp','libs'],
-              //names: ['libs'],
-              minChunks: Infinity,
-              filename:"[name].js",
-            }),
+            // new webpack.optimize.CommonsChunkPlugin({
+            //   //names: ['carbon','libs'],
+            //   names: ['libs'],
+            //   minChunks: Infinity,
+            //   filename:"[name].js",
+            // }),
             new ExtractTextPlugin("bundle.css"),
         ],
     }
-});
+})();

@@ -9,8 +9,8 @@ const initialState =Immutable.fromJS({
 })
 
 
-const <component name> = (state = initialState, action) => {
-  if(action.type.split('/')[0].indexOf('<component name>')==-1){
+const <component name-lower> = (state = initialState, action) => {
+  if(action.type.split('/')[0].indexOf('<component name-lower>')==-1){
     return state
   }
   switch (action.type.split('/')[1]) {
@@ -21,4 +21,4 @@ const <component name> = (state = initialState, action) => {
   }
 }
 
-export default <component name>
+export default <component name-lower>

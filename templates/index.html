@@ -3,336 +3,76 @@
 -->
 <!DOCTYPE html>
 <html>
-<script>
-	let ct=new Date().getTime()
-	if((window.localStorage.closeTime!=null)&&(window.localStorage.closeTime!='')&&(ct-Number(window.localStorage.closeTime)>8000)&&( (ct-Number(window.localStorage.closeTime)<=1000*60*60)||(window.localStorage.innerLogin=='true') )){
-		window.localStorage.closeTime=''
-		console.log('logout by me')
-	  location.href=('./logout.html');
-	}
+	<head>
+		<meta charset="UTF-8" />
+		<title>Your app name</title>
+		<!-- sample js -->
+		<script src="./libs/sample.js"></script>
+		<link rel="stylesheet" href="./fonts/basic.css" />
+		<style>
+		</style>
+	</head>
 
-</script>
-<head>
-	<meta charset="UTF-8" />
-	<title>IBM IoT for Manufacturing</title>
-	<script src="./libs/jquery-1.11.2.min.js"></script>
-	<script src="./libs/enhancedJQueryAjax.js"></script>
-	<!--below two libs used together -->
-	<script src="./libs/jquery.ui.widget.js"></script>
-	<script src="./libs/jquery.fileupload.js"></script>
-	<!--the two libs used together -->
-	<script src="./libs/jquery.datetimepicker.full.min.js"></script>
-	<script src="./libs/d3.min.js"></script>
-	<script>
-		//easy to push data to a global object and easy to get data from it
-		if(window.GLOBAL_STORAGE==null){
-			var GLOBAL_STORAGE={}
-		}
-	</script>
-	<script src="./js/tools.js"></script>
-	<script src="./js/closeTab.js"></script>
-	<!-- <script src="./js/websocket.js"></script> -->
-	<script src="./js/settings.js"></script>
-	<script src="./libs/common-d3.js"></script>
-
-	<link rel="stylesheet" href="./fonts/ibmfonts.css" />
-	<link rel="stylesheet" href="./fonts/fonts.css" />
-	<link rel="stylesheet" href="./css/jquery.datetimepicker.css" />
-	<style media="screen">
-		@-webkit-keyframes rotate {
-			0%,
-			100% {
-				-webkit-transform: rotate(0deg);
-			}
-			100% {
-				-webkit-transform: rotate(360deg);
-			}
-		}
-		@-moz-keyframes rotate {
-			0%,
-			100% {
-				-moz-transform: rotate(0deg);
-			}
-			100% {
-				-moz-transform: rotate(360deg);
-			}
-		}
-		@-o-keyframes rotate {
-			0%,
-			100% {
-				-o-transform: rotate(0deg);
-			}
-			100% {
-				-o-transform: rotate(360deg);
-			}
-		}
-		@-ms-keyframes rotate {
-			0%,
-			100% {
-				-ms-transform: rotate(0deg);
-			}
-			100% {
-				-ms-transform: rotate(360deg);
-			}
-		}
-		@keyframes rotate {
-			0%,
-			100% {
-				transform: rotate(0deg);
-			}
-			100% {
-				transform: rotate(360deg);
-			}
-		}
-		.icon-spinner6{
-			-moz-animation: rotate 1s linear infinite;
-			-webkit-animation: rotate 1s linear infinite;
-			-o-animation: rotate 1s linear infinite;
-			-ms-animation: rotate 1s linear infinite;
-			animation: rotate 1s linear infinite;
-		}
-		html, body {
-	    width: 100%;
-	    height: 100%;
-	    margin: 0;
-	    padding: 0;
-	    overflow: hidden;
-		}
-	</style>
-</head>
-
-<body>
-	<div id="root">
-		<div style='text-align:center;padding-top:110px;height:100vh;background:#f3f3f3;' >
-			<div class="icon-spinner6" style="font-size:40px;"></div>
+	<body>
+		<div id="root">
 		</div>
-		<div style='font-family:HelveticaNeue-Bold;visibility:hidden'>for load font very early</div>
-	</div>
-	<div style="visibility:hidden;width:0;height:0;overflow:hidden;" id="iframes">
-	</div>
-	<script>
-		//local storage global variable declaration
-		var ls=window.localStorage;
-		//screen auto adaptor
-		var screenWidth=document.body.clientWidth;
-		var screenHeight=document.body.clientHeight;
+		<script>
+			//local storage global variable declaration
+			var ls=window.localStorage;
+			//screen auto adaptor
+			var screenWidth=document.body.clientWidth;
+			var screenHeight=document.body.clientHeight;
 
-		//login
-		console.log("Username ::"+ls['username'])
-		if(ls.innerLogin&&ls.innerLogin=='true'&&ls['username']==null){
-			location.href='/ibm/iotm/solution//login/index.jsp'
-		}
-		ls['username-previous']=ls['username']
-		ls['username']='';
+			//i18n render
+			var client=(window.navigator.userLanguage || (navigator.languages&&navigator.languages[0]) ||window.navigator.language).toLowerCase();
+			console.info("index.html(), client:", client);
+			var lang={
+				'en':1,
+				'zh':1,
+				'de':1,
+				'ja':1,
+				'zh-tw':1,
+				'es':1,
+				'it':1,
+				'fr':1,
+				'pt-br':1
+			};
 
-		var interactiveuser={
-			'interactiveuser':1,
-		};
+			var lang_datetimepicker = 'en';
 
-		//i18n render
-		var client=(window.navigator.userLanguage || (navigator.languages&&navigator.languages[0]) ||window.navigator.language).toLowerCase();
-		console.info("index.html(), client:", client);
-		var lang={
-			'en':1,
-			'zh':1,
-			'de':1,
-			'ja':1,
-			'zh-tw':1,
-			'es':1,
-			'it':1,
-			'fr':1,
-			'pt-br':1
-		};
-
-		var lang_datetimepicker = 'en';
-
-		if(client in lang){
-			lang_datetimepicker=client;
-		}
-		else if(client.substring(0,2) in lang){
-			lang_datetimepicker=client.substring(0,2);
-		}
-		else{
-			lang_datetimepicker='en';
-		}
-
-		myfetch("/ibm/iotm/service/solution", null, function(data) {
-			if (data && data.length > 0) {
-				GLOBAL_STORAGE.solutions=data
-				if(ls.solution&&ls.solution!=''){
-					initSolution(ls.solution)
-				}else{
-					initSolution(data[0].solution)
-					ls.solution=data[0].solution
-				}
-			}else{
-				//no Permission
-				renderNoPermission()
-			}
-		}, function() {},'get')
-
-		function renderNoPermission(){
-			GLOBAL_STORAGE.solutions=['No permission']
-			GLOBAL_STORAGE.role='No permission'
-			ls['role']='No permission'
-			importStyle('./css/main.css?'+Math.random())
-			reactRender()
-		}
-
-		function initSolution(solution){
-			myfetch("/ibm/iotm/service/userInfo?solution="+solution, null, function(data) {
-
-		    if (data && data.length > 0) {
-		      // Only when login and can get the user name, we can display UI, and all function will based on that username
-		      // - should not rely on the localStorage in react, because on the very first time, when user hasn't been got, the local storage is empty, and request has been sent out without the parameters.
-		      // - Pass username into Root and pass on it will keep that parameter consistent.
-		      var group =data[0].role;
-
-					let aliveSince=getTimestamp(data[0].aliveSince+" 00:00:00");
-
-					let expireInDays=(data[0].expireInDays);
-
-					GLOBAL_STORAGE.accountStatus=data[0].accountStatus
-					GLOBAL_STORAGE.expireInDays=data[0].expireInDays
-					GLOBAL_STORAGE.paymentType=data[0].paymentType
-
-					if(GLOBAL_STORAGE.accountStatus&&GLOBAL_STORAGE.accountStatus!='active'&&GLOBAL_STORAGE.accountStatus!=''){
-						//user expired
-						//when ${data[0].expireInDays} is "", then means do not set a expire date now for this user
-						renderNoPermission()
-						return false;
-					}else{
-						var cells = data[0].cells;
-						if(ls['role']&&ls['role']!=''){
-							let groupArray=group.split(',')
-							if(!groupArray.includes(ls['role'])){
-								ls['role']=group.split(',')[0]
-							}
-						}else{
-							ls['role']=group.split(',')[0]
-						}
-						GLOBAL_STORAGE.role=group
-						GLOBAL_STORAGE.cells=data[0].parameters&&data[0].parameters.cells&&data[0].parameters.cells.sort((a,b)=>{return a.toLowerCase()>b.toLowerCase()})
-						GLOBAL_STORAGE.solution=data[0].solution
-						GLOBAL_STORAGE.tenant=data[0].tenant
-						GLOBAL_STORAGE.user=data[0].user
-						GLOBAL_STORAGE.sinceDays = ((new Date()).getTime() - aliveSince) / (1000 * 60 * 60 * 24)
-
-						ls['username']=GLOBAL_STORAGE.user
-						ls['tenant']=GLOBAL_STORAGE.tenant
-						ls['cell0']=GLOBAL_STORAGE.cells&&GLOBAL_STORAGE.cells[0]
-
-						if(group=='inspectorsupervisor_HEHE'){
-							importStyle('./src/css/main.css?'+Math.random())
-						}else{
-							importStyle('./css/main.css?'+Math.random())
-						}
-
-						//wait 20s to load NPS
-						setTimeout(()=>{
-							importScript(`./js/nps.js`)
-						},20*1000)
-
-						reactRender()
-					}
-
-
-		    }
-		  }, function() {
-		    importStyle('./css/main.css?'+Math.random())
-		  },'get')
-		}
-
-
-		function importScript(url){
-			return new Promise(function(resolve, reject) {
-				var script = document.createElement('script');
-		    script.type = 'text/javascript';
-		    script.src = url;
-		    document.getElementsByTagName('head')[0].appendChild(script);
-				script.onload=()=>{
-					resolve();
-				}
-			});
-
-	  }
-
-		function importStyle(url){
-	    var link = document.createElement('link');
-	    link.rel = 'stylesheet';
-	    link.type = 'text/css';
-	    link.href = url;
-	    document.getElementsByTagName('head')[0].appendChild(link);
-	  }
-		function reactRenderWorker(appName){
 			if(client in lang){
-				importStyle(`./dist/${client}/bundle.css?${Math.random()}`)
-
-				importScript(`./dist/${client}/libs.js`).then(()=>{
-					importScript(`./dist/${client}/iotp.js`).then(()=>{
-						importScript(`./dist/${client}/${appName}`)
-					})
-				})
-
+				lang_datetimepicker=client;
 			}
 			else if(client.substring(0,2) in lang){
-				importStyle(`./dist/${client.substring(0,2)}/bundle.css?${Math.random()}`)
-
-				importScript(`./dist/${client.substring(0,2)}/libs.js`).then(()=>{
-					importScript(`./dist/${client.substring(0,2)}/iotp.js`).then(()=>{
-						importScript(`./dist/${client.substring(0,2)}/${appName}`)
-					})
-				})
+				lang_datetimepicker=client.substring(0,2);
 			}
 			else{
-				importStyle(`./dist/en/bundle.css?${Math.random()}`)
-
-				importScript(`./dist/en/libs.js`).then(()=>{
-					importScript(`./dist/en/iotp.js`).then(()=>{
-						importScript(`./dist/en/${appName}`)
-					})
-				})
+				lang_datetimepicker='en';
 			}
-		}
-		function reactRender(){
-			if(location.host.indexOf('localhost')!=-1){
-				reactRenderWorker(`app.js`)
-			}else{
-				//get version Hash code first, if it is a production mode
-				let i18nPath=''
-				if(client in lang){
-					i18nPath=`./dist/${client}/`
-				}
-				else if(client.substring(0,2) in lang){
-					i18nPath=`./dist/${client.substring(0,2)}/`
-				}
-				else{
-					i18nPath=`./dist/en/`
-				}
-				myfetch(i18nPath+"webpack-assets.json", null, function(data) {
-					if(typeof data=='string'){
-						data=JSON.parse(data)
+
+			function importScript(url){
+				return new Promise(function(resolve, reject) {
+					var script = document.createElement('script');
+				script.type = 'text/javascript';
+				script.src = url;
+				document.getElementsByTagName('head')[0].appendChild(script);
+					script.onload=()=>{
+						resolve();
 					}
-					reactRenderWorker(data.bundle.js)
-				},function() {
-			    renderNoPermission()
-			  },'get')
+				});
 			}
-		}
 
-		function resetSampling(text){
-			$('.sampling-btn').html(text)
-			$('.sampling-btn').removeClass('reset-sample')
-			$('.defect-tables tbody').css('overflow-y','hidden')
-			$('#samplingInfo').html(``)
-		}
+			function importStyle(url){
+				var link = document.createElement('link');
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = url;
+				document.getElementsByTagName('head')[0].appendChild(link);
+			}
 
-		GLOBAL_STORAGE.addedZipsInGroupCache={} //record the added zip for in group when select zips to do validate or retrain in the popup
+			//for audio Analysis
+			window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext;
 
-		//for audio Analysis
-		window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext;
-
-	</script>
-</body>
-
+		</script>
+	</body>
 </html>

@@ -1,7 +1,7 @@
 /************************************************************************
 
  *************************************************************************/
-.<component name> {
+.<component name-lower> {
   z-index: 666;
 }
 .wizardDialog :global(div[class*='leftLayoutBodyContent']) {

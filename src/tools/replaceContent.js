@@ -12,7 +12,9 @@ function replaceContent(pathName,target,value,callback){
       log(err);
       return;
     }
-    fs.writeFile(pathName, data.replace(/\<component name\>/g,value), {flag: 'w'}, function (err) {
+    const a=data.replace(/\<component name\>/g,value)
+    const b=a.replace(/\<component name\-lower\>/g,value.toLowerCase())
+    fs.writeFile(pathName, b, {flag: 'w'}, function (err) {
       if(err) {
         log(err);
       } else {

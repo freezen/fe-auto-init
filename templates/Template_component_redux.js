@@ -1,27 +1,55 @@
 /************************************************************************
 
  *************************************************************************/
-import React, {PropTypes,Component} from 'react';
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { Router, Route, hashHistory } from 'react-router';
+import React, {Component} from 'react';
+import * as PropTypes from 'prop-types';
+import { HashRouter, Route, Switch, hashHistory } from 'react-router-dom';
 
-import <component name>_Home from './<component name>_Home'
-import * as actions from './actions'
+import css from './<component name>.modules.css'
 
-
-const mapStateToProps = (state) => {
-  return {
-    expandAppList:state.get('<component name>').get('expandAppList'),
-    expandData:state.get('<component name>').get('expandData'),
+export default class <component name> extends Component {
+  static propTypes = {
+    actions: PropTypes.object.isRequired,
   }
-};
+  constructor(props) {
+    super(props);
+    this.state={
+      sample:'sample',
+    }
+  }
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actions, dispatch)
-});
+  componentWillMount(){
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(<component name>_Home);
+  }
+
+  componentDidMount(){
+
+  }
+
+  componentWillReceiveProps(){
+
+  }
+
+  shouldComponentUpdate(){
+    return true
+  }
+
+  componentWillUpdate(){
+
+  }
+
+  componentDidUpdate(){
+
+  }
+
+  render() {
+    let _this=this
+    return (
+
+      <div className={css['<component name-lower>']} style={{}}>
+        <component name>
+      </div>
+
+    );
+  }
+}

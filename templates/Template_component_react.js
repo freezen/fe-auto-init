@@ -1,8 +1,9 @@
 /************************************************************************
 
  *************************************************************************/
-import React, {Component,PropTypes} from 'react';
-import { Router, Route, hashHistory } from 'react-router';
+import React, {Component} from 'react';
+import * as PropTypes from 'prop-types';
+import { HashRouter, Route, Switch, hashHistory } from 'react-router-dom';
 
 import css from './<component name>.modules.css'
 
@@ -45,16 +46,12 @@ export default class <component name> extends Component {
 
   }
 
-  popup(e){
-    this.props.actions.popup(e)
-  }
-
   render() {
     let _this=this
     return (
 
-      <div className={css['<component name>']} style={{}} onClick={e => this.popup(e)}>
-        Sample
+      <div className={css['<component name-lower>']} style={{}}>
+        <component name>
       </div>
 
     );

@@ -1,11 +1,11 @@
 /************************************************************************
 
  *************************************************************************/
-import {getUnconfirmedList} from '../../../role_Inspector/objects/actions/index'
-import {getInstance} from '../../../role_Modeler/editModel/actions/index'
+//import {getUnconfirmedList} from '../../../role_Inspector/objects/actions/index'
+//import {getInstance} from '../../../role_Modeler/editModel/actions/index'
 
 export const expandAppList =() => ({
-  type: '<component name>/expandAppList'
+  type: '<component name-lower>/expandAppList'
 });
 
 export const getNotificationList = (seemore,callback) => dispatch => {
