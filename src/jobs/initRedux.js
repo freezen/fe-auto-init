@@ -19,7 +19,7 @@ function initRedux(name,config){
     <component name>.js
     <component name>_Container.js
     <component name>.css (use CSS Modules)
-    /child
+    /components (the sub components of the current one)
     /actions
       index.js
     /reducers
@@ -30,7 +30,7 @@ function initRedux(name,config){
   let componentName=name.charAt(0).toUpperCase()+name.substring(1)
   //init folder
   createFolder(userPath+'/'+name)
-  createFolder(userPath+'/'+name+'/child')
+  createFolder(userPath+'/'+name+'/components')
   createFolder(userPath+'/'+name+'/actions')
   createFolder(userPath+'/'+name+'/reducers')
 

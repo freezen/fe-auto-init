@@ -10,7 +10,7 @@ function initReact(name,config){
 
     <component name>.js
     <component name>.css (use CSS Modules)
-    /child
+    /components (the sub components of the current one)
 
   **************************************/
 
@@ -19,7 +19,7 @@ function initReact(name,config){
 
   //init folder
   createFolder(userPath+'/'+name)
-  createFolder(userPath+'/'+name+'/child')
+  createFolder(userPath+'/'+name+'/components')
 
   //init files
   createFile(userPath+'/'+name+`/Template_component_react.js`)
