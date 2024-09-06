@@ -12,7 +12,7 @@
     "react-auto-init":"index.js"
   },
   "scripts": {
-    "test": "node index sample -x"
+    "test": "node index SAMPLE -c"
   },
   "keywords": [
     "react",

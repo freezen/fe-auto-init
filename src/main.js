@@ -5,6 +5,7 @@ var config=require('../config.js');
 var initProject=require('./jobs/initProject.js');
 var initReact=require('./jobs/initReact.js');
 var initRedux=require('./jobs/initRedux.js');
+var initChannel=require('./jobs/initChannel.js');
 
 function Main() {
   const name=process.argv[2]
@@ -12,6 +13,8 @@ function Main() {
   if(paramater==''){
     paramater=undefined
   }
+
+  console.warn('name', name, paramater);
   /*
     command line:
       node index <component name> <-x:if make a redux component>
@@ -22,11 +25,14 @@ function Main() {
   }else if(paramater==undefined){
     //init react component
     initReact(name,config)
-  }else if(paramater){
+  }else if(paramater === 'x'){
     //init react component
     initRedux(name,config)
+  }else if(paramater === 'c'){
+    //init vue channel files
+    initChannel(name,config)
   }
 
-  log('Something is complete !');
+  log('Completed !');
 };
 module.exports = Main;

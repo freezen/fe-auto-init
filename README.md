@@ -1,18 +1,22 @@
-# react-auto-init
-React/redux project init &amp; generate js/css files to init a new react/redux component
+# fe-auto-init
+React/vue project init &amp; generate js/css files to init a new react/vue component
 
-Install: npm install react-auto-init -g
+Install: npm install fe-auto-init -g
 
 To init a react app, run in the right path: 
 
-`react-auto-init`
+`fe-auto-init`
 
-For a pure react component, run in the right path: 
+对于 react component, 执行: 
 
-`react-auto-init <your component name>`
+`fe-auto-init <your component/channel name>`
 
-For a redux component, run: 
+对于 redux component, 执行: 
 
-`react-auto-init <your component name> -x`
+`fe-auto-init <your component/channel name> -x`
 
-npm link : https://www.npmjs.com/package/react-auto-init
+添加渠道, 执行: 
+
+`fe-auto-init <your component/channel name> -c`
+
+npm link : https://www.npmjs.com/package/fe-auto-init
