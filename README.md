@@ -19,4 +19,4 @@ To init a react app, run in the right path:
 
 `fe-auto-init <your component/channel name> -c`
 
-npm link : https://www.npmjs.com/package/fe-auto-init
+npm link : https://verdaccio.lkcoffee.com/-/web/detail/fe-auto-init
